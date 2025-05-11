@@ -49,29 +49,19 @@
 <body>
 
 <?php
-
-$apiBaseUrl = "http://localhost:9090/query";
-$queryString = http_build_query($_GET);
-$apiUrl = $apiBaseUrl . '?' . $queryString;
-
-$json = file_get_contents($apiUrl);
-if ($json === false) {
-    die("Error fetching data from API: $apiUrl");
-}
-
-$data = json_decode($json, true);
-if (!$data || !isset($data['events'])) {
-    echo "<p>⚠️ Fehler beim Abrufen der Eventdaten.</p>";
-    exit;
-}
+include("events-main.php");
 
 echo "<div class='event-grid'>";
 foreach ($data['events'] as $event) {
-    if (empty($event['img_src_name'])) continue;
-    $img = htmlspecialchars($event['img_src_name']);
-    $backgroundUrl = "https://api.uranus.oklabflensburg.de/uploads/$img";
+    if (!empty($event['img_src_name'])) {
+        $img = htmlspecialchars($event['img_src_name']);
+        $backgroundUrl = "https://api.uranus.oklabflensburg.de/uploads/$img";
+    }
+    else {
+        $backgroundUrl = "https://grain.one/img/uranus.jpg";
+    }
 
-    $date = htmlspecialchars($event['date_start']);
+    $date = htmlspecialchars($event['start_date']);
     $title = htmlspecialchars($event['event_title']);
     $venue = htmlspecialchars($event['venue_name']);
     $city = htmlspecialchars($event['venue_city']);

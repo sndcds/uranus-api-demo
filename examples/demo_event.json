@@ -1,0 +1,25 @@
+{
+  "organizer_id": 1,
+  "space_id": 64,
+  "title": "Jessica Ekomane",
+  "description": "essica Ekomane ist eine in Frankreich geborene und in Berlin lebende elektronische Musikerin und Klangkünstlerin. Ihre Praxis entfaltet sich rund um Live-Performances und Installationen. Ihre quadrophonischen Auftritte, die durch ihre physische Wirkung gekennzeichnet sind, zielen auf einen kathartischen Effekt durch das Zusammenspiel von Psychoakustik, die Wahrnehmung rhythmischer Strukturen und den Wechsel von Lärm und Melodie. Ihre sich ständig wandelnden und immersiven Klanglandschaften basieren auf Fragen wie dem Verhältnis zwischen individueller Wahrnehmung und kollektiver Dynamik oder der Untersuchung von Hörgewohnheiten und deren gesellschaftlichen Wurzeln.\n\nJessica Ekomane war eine der sechs Komponist*innen, die von Natascha Süder Happelman für deren Installation im Deutschen Pavillon der Biennale von Venedig 2019 ausgewählt wurden. Sie war Teil des Künstlerkatalogs der SHAPE Platform für das Jahr 2019. Im September 2019 erschien ihr erstes Album Multivocal über Important Records. Ihre Arbeiten wurden weltweit in verschiedenen Institutionen präsentiert, darunter das CTM Festival (Berlin), Ars Electronica (Linz), Dommune (Tokio) und das Bemis Center for Contemporary Arts (Omaha).",
+  "event_dates": [
+    {
+      "start": "2024-11-15T20:00:00Z",
+      "accessibility_flags": [2, 3, 16, 18],
+      "visitor_info_flags": [2, 4, 6, 12, 14],
+      "space_id": 63,
+      "entry_time": "18:00:00"
+    },
+    {
+      "start": "2024-11-16T19:00:00Z",
+      "end": "2025-06-08T21:00:00Z",
+      "accessibility_flags": [2, 3, 16],
+      "visitor_info_flags": [2, 4, 6, 12, 14],
+      "space_id": 64
+    }
+  ],
+  "event_types": [1],
+  "genre_types": [1]
+}
+

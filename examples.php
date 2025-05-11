@@ -36,13 +36,30 @@
 <h1>Beispiele</h1>
 
 <?php
+
+include_once('config.php');
+
 // Define table content as JSON
 $json = '[
-    {"description": "Nach Land", "link": "event-img-grid.php?mode=event&country=DNK"},
-    {"description": "Nach PLZ", "link": "event-img-grid.php?mode=event&postal_code=24939"},
-    {"description": "Nach Datum", "link": "event-img-grid.php?mode=event&date_start=2025-01-01&date_end=2026-01-01"},
-    {"description": "Detailkacheln", "link": "event-tiles.php?mode=event&date_start=2025-01-01"},
-    {"description": "Liste", "link": "event-list.php?mode=event&date_start=2025-01-01"}
+    {"description": "Open Data", "link": "http://localhost:9090/api/query?mode=event&start=2024-01-01"},
+    {"description": "Liste", "link": "event-list.php?mode=event&start=2024-01-01"},
+    {"description": "Details", "link": "event-tiles.php?mode=event&start=2024-01-01"},
+    {"description": "Stadt", "link": "event-img-grid.php?mode=event&city=*flens*"},
+    {"description": "Land", "link": "event-img-grid.php?mode=event&countries=DEU"},
+    {"description": "PLZ", "link": "event-img-grid.php?mode=event&postal_code=24939"},
+    {"description": "Spielstätte", "link": "event-img-grid.php?mode=event&venues=13"},
+    {"description": "Raum", "link": "event-list.php?mode=event&start=2024-01-01&spaces=64"},
+    {"description": "Radius", "link": "event-img-grid.php?mode=event&start=2024-01-01&lon=9.431297&lat=54.791603&radius=80"},
+    {"description": "Titel", "link": "event-img-grid.php?mode=event&title=*pap*"},
+    {"description": "Text", "link": "event-img-grid.php?mode=event&search=*Besteck*"},
+    {"description": "Datum", "link": "event-img-grid.php?mode=event&start=2024-01-01&date=2026-01-01"},
+    {"description": "Uhrzeit", "link": "event-img-grid.php?mode=event&time=10,14" },
+    {"description": "Art(en)", "link": "event-list.php?mode=event&start=2024-01-01&event_types=1"},
+    {"description": "Genre(s)", "link": "event-list.php?mode=event&start=2024-01-01&genre_types=2"},
+    {"description": "Sprache", "link": "event-list.php?mode=event&start=2024-01-01&lang=da"},
+    {"description": "Barrierefreiheit", "link": "event-tiles.php?mode=event&start=2024-01-01&accessibility_infos=5"},
+    {"description": "Besucherinfos", "link": "event-tiles.php?mode=event&start=2024-01-01&visitor_infos=4"},
+    {"description": "Event erstellen", "link": "create-event.php"}
 ]';
 
 // Decode JSON into array

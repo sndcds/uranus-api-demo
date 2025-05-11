@@ -74,28 +74,7 @@
 
 <?php
 
-// Base URL of your API
-$apiBaseUrl = "http://localhost:9090/query";
-
-// Build query string from current page's URL parameters
-$queryString = http_build_query($_GET);
-
-// Full API URL with parameters
-$apiUrl = $apiBaseUrl . '?' . $queryString;
-
-// Fetch JSON data from the API
-$json = file_get_contents($apiUrl);
-if ($json === false) {
-    die("Error fetching data from API: $apiUrl");
-}
-
-// Decode JSON into associative array
-$data = json_decode($json, true);
-// Basic error handling
-if (!$data || !isset($data['events'])) {
-    echo "<p>⚠️ Fehler beim Abrufen der Eventdaten.</p>";
-    exit;
-}
+include("events-main.php");
 
 echo "<h1>Gefundene Events: " . htmlspecialchars($data['total']) . "</h1>";
 echo "<p class='meta'>Abfragezeit: " . htmlspecialchars($data['time']) . "</p>";
@@ -105,8 +84,8 @@ foreach ($data['events'] as $event) {
     echo "<div class='event'>";
     echo "<h2>" . htmlspecialchars($event['event_title']) . "</h2>";
 
-    echo "<p class='meta'>" . htmlspecialchars($event['date_start']) .
-         " / " . htmlspecialchars($event['time_start']) . " / ";
+    echo "<p class='meta'>" . htmlspecialchars($event['start_date']) .
+         " / " . htmlspecialchars($event['start_time']) . " / ";
     echo htmlspecialchars($event['venue_name']) .
          " / " . htmlspecialchars($event['venue_city']) . "</p>";
 

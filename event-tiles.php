@@ -84,21 +84,7 @@
 <body>
 
 <?php
-
-$apiBaseUrl = "http://localhost:9090/query";
-$queryString = http_build_query($_GET);
-$apiUrl = $apiBaseUrl . '?' . $queryString;
-
-$json = file_get_contents($apiUrl);
-if ($json === false) {
-    die("Error fetching data from API: $apiUrl");
-}
-
-$data = json_decode($json, true);
-if (!$data || !isset($data['events'])) {
-    echo "<p>⚠️ Fehler beim Abrufen der Eventdaten.</p>";
-    exit;
-}
+include("events-main.php");
 
 echo "<h1>Gefundene Events: " . htmlspecialchars($data['total']) . "</h1>";
 echo "<p class='meta'>Abfragezeit: " . htmlspecialchars($data['time']) . "</p>";
@@ -107,8 +93,8 @@ echo "<div class='event-grid'>";
 foreach ($data['events'] as $event) {
     echo "<div class='event-tile'>";
     echo "<h2>" . htmlspecialchars($event['event_title']) . "</h2>";
-    echo "<div class='meta'>" . htmlspecialchars($event['date_start']) . " – " .
-         htmlspecialchars($event['time_start']) . "<br>" .
+    echo "<div class='meta'>" . htmlspecialchars($event['start_date']) . " – " .
+         htmlspecialchars($event['start_time']) . "<br>" .
          htmlspecialchars($event['venue_name']) . " / " .
          htmlspecialchars($event['venue_city']) . "</div>";
 
@@ -116,8 +102,9 @@ foreach ($data['events'] as $event) {
         $img = htmlspecialchars($event['img_src_name']);
         echo "<img src='https://api.uranus.oklabflensburg.de/uploads/$img' alt='Event Bild'>";
     }
-
-
+    else {
+        echo "<img src='https://grain.one/img/uranus.jpg' alt='Event Bild'>";
+    }
 
     if (!empty($event['event_types']) && is_array($event['event_types'])) {
         $filtered = array_filter($event['event_types'], fn($t) => isset($t['name']) && $t['name'] !== null);
@@ -159,6 +146,22 @@ foreach ($data['events'] as $event) {
         echo " (Kapazität: " . htmlspecialchars($event['space_total_capacity']) . ")";
     }
     echo "</p>";
+
+    if (!empty($event['accessibility_flag_names'])) {
+        echo "<ul style='font-size:0.8em;'>";
+        foreach ($event['accessibility_flag_names'] as $feature) {
+            echo "<li>" . htmlspecialchars($feature) . "</li>";
+        }
+        echo "</ul>";
+    }
+
+    if (!empty($event['visitor_info_flag_names'])) {
+        echo "<ul style='font-size:0.8em;'>";
+        foreach ($event['visitor_info_flag_names'] as $info) {
+            echo "<li>" . htmlspecialchars($info) . "</li>";
+        }
+        echo "</ul>";
+    }
 
     echo "</div>";
 }
