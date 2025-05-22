@@ -59,8 +59,8 @@ $data = [
     ["description" => "Barrierefreiheit", "link" => "event-tiles.php?mode=event&start=2024-01-01&accessibility=5"],
     ["description" => "Besucherinfos", "link" => "event-tiles.php?mode=event&start=2024-01-01&visitor_infos=4"],
     ["description" => "Venue Map (JSON)", "link" => $apiBaseUrl . "/query?mode=venue-map&start=2024-01-01"],
-    ["description" => "Karte Leaflet", "link" => "map-leaflet.html"],
-    ["description" => "Karte MapLibre", "link" => "map-maplibre.php"],
+    ["description" => "Karte Leaflet, Events", "link" => "map-leaflet.php"],
+    ["description" => "Karte MapLibre, Venues", "link" => "map-maplibre.php"],
     ["description" => "Image", "link" => $apiBaseUrl . "/image/get?id=52&mode=cover&width=400&ratio=3by2&focusx=0.5&focusy=0.5&type=webp&quality=90"],
 
     ["description" => "Login", "link" => "login.php"],

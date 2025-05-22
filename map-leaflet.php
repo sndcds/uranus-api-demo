@@ -38,8 +38,8 @@
         maxZoom: 18,
     }).addTo(map);
 
-    // Fetch data from your local API
-    const apiUrl = "<?= htmlspecialchars($apiBaseUrl, ENT_QUOTES) ?>/query?mode=event&start=2024-01-01";
+    <?php include("config.php"); ?>
+    const apiUrl = <?php echo json_encode($apiBaseUrl . "/query?mode=event&start=2024-01-01"); ?>;
     fetch (apiUrl)
         .then(response => response.json())
         .then(data => {
