@@ -133,7 +133,10 @@
 
     let currentPopup = null;
 
-    fetch('http://localhost:9090/api/query?mode=venue-map')
+    <?php include("config.php"); ?>
+    const apiUrl = <?php echo json_encode($apiBaseUrl . "/query?mode=venue-map"); ?>;
+
+    fetch (apiUrl)
         .then(response => response.json())
         .then(data => {
             const events = data.events || [];

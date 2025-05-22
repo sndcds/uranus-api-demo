@@ -39,7 +39,8 @@
     }).addTo(map);
 
     // Fetch data from your local API
-    fetch('http://localhost:9090/api/query?mode=event&start=2024-01-01')
+    const apiUrl = "<?= htmlspecialchars($apiBaseUrl, ENT_QUOTES) ?>/query?mode=event&start=2024-01-01";
+    fetch (apiUrl)
         .then(response => response.json())
         .then(data => {
             const events = data.events || [];
