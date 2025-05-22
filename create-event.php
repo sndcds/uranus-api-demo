@@ -2,7 +2,7 @@
 include_once("config.php");
 
 // Your JWT token
-$jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwiZXhwIjoxNzQ2OTYxNDQ0fQ.LYlTC24JGcr4ugkLmIDizUKnEouWcuUdeZzyLZXe3I4';
+$jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwiZXhwIjoxNzQ3ODU4OTc0fQ.bSbmW5mgjNdqvpvcjqqhwQR_qr1RHqdI1wQENL1JbAM';
 
 // Event data
 

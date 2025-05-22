@@ -63,9 +63,9 @@ echo "<tr>
 foreach ($data['events'] as $event) {
     $date = htmlspecialchars($event['start_date']);
     $time = htmlspecialchars($event['start_time'] ?? '-');
-    $title = htmlspecialchars($event['event_title']);
+    $title = htmlspecialchars($event['title']);
     $venue = htmlspecialchars($event['venue_name']);
-    $city = htmlspecialchars($event['venue_city']);
+    $city = htmlspecialchars($event['venue_city'] ?? '-');
 
     $eventTypes = '';
     if (!empty($event['event_types']) && is_array($event['event_types'])) {

@@ -1,3 +1,7 @@
+<?php
+include("events-main.php");
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -10,73 +14,126 @@
         }
 
         .event-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .event-grid a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
         }
 
         .event-tile {
             position: relative;
-            width: 25%; /* 4 per row */
-            aspect-ratio: 4 / 3;
+            width: 100%;
+            padding-top: 75%; /* 4:3 ratio */
             background-size: cover;
             background-position: center;
+            background-color: #ccc;
         }
 
         .overlay {
-            box-sizing: border-box;
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 100%;
+            right: 0;
+            box-sizing: border-box;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
             color: white;
-            background: rgba(0, 0, 0, 0.0);
-            padding: 4px 6px;
+            padding: 6px;
             font-size: 0.85em;
-            line-height: 1.3;
+            line-height: 1.4;
             font-family: sans-serif;
         }
-        .overlay span {
-            background-color: rgba(255, 255, 255, 1);
+
+        .overlay span, h1 {
+            background-color: rgba(255, 255, 255, 0.9);
             color: black;
             padding: 2px 4px;
             display: inline-block;
-            margin-bottom: 2px; /* optional spacing between lines */
-            width: max-content; /* so background wraps just the text */
+            margin-bottom: 2px;
+            white-space: nowrap;
+        }
+
+        .overlay h1 {
+            font-size: 1.6em;
+            margin-top: 0;
+        }
+
+        @media (max-width: 1280px) {
+            .event-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 960px) {
+            .event-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .event-grid {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+                gap: 16px;
+            }
         }
     </style>
 </head>
 <body>
 
+<div class="event-grid">
 <?php
-include("events-main.php");
+foreach ($data['events'] as $i => $event) {
+    $image_id = htmlspecialchars((string)($event['image_id'] ?? ''));
+    $image_focus_x = htmlspecialchars((string)($event['image_focus_x'] ?? '0.5'));
+    $image_focus_y = htmlspecialchars((string)($event['image_focus_y'] ?? '0.5'));
 
-echo "<div class='event-grid'>";
-foreach ($data['events'] as $event) {
-    if (!empty($event['img_src_name'])) {
-        $img = htmlspecialchars($event['img_src_name']);
-        $backgroundUrl = "https://api.uranus.oklabflensburg.de/uploads/$img";
-    }
-    else {
-        $backgroundUrl = "https://grain.one/img/uranus.jpg";
-    }
+    $image_params = [
+        'id' => $image_id,
+        'mode' => 'cover',
+        'width' => 640,
+        'ratio' => '3by2',
+        'focusx' => $image_focus_x,
+        'focusy' => $image_focus_y,
+        'type' => 'webp',
+        'quality' => 90,
+    ];
 
-    $date = htmlspecialchars($event['start_date']);
-    $title = htmlspecialchars($event['event_title']);
-    $venue = htmlspecialchars($event['venue_name']);
-    $city = htmlspecialchars($event['venue_city']);
+    $imageUrl = $apiBaseUrl . '/image/get?' . http_build_query($image_params);
+    $divId = "tile-$i";
 
-    echo "<div class='event-tile' style=\"background-image: url('$backgroundUrl')\">";
-    echo "<div class='overlay'>
-            <span><strong>$title</strong></span><br>
-            <span>$date</span>
-            <span>$venue, $city</span>
-          </div>";
-    echo "</div>";
+    $url    = "event.php?id=" . urlencode($event['id']);
+    $title  = htmlspecialchars($event['title']);
+    $date   = htmlspecialchars($event['start_date']);
+    $venue  = htmlspecialchars($event['venue_name']);
+    $city   = htmlspecialchars($event['venue_city']);
+
+    echo <<<HTML
+    <a href="$url">
+        <div class="event-tile pluto-image-tile" id="$divId" style="background-image:url($imageUrl);">
+            <div class="overlay">
+                <span>$date</span><br>
+                <h1>$title</h1><br>
+                <span>$venue, $city</span>
+                $imageUrl
+            </div>
+        </div>
+    </a>
+    HTML;
 }
-echo "</div>";
-
 ?>
+</div>
+
+<!-- <script type="module" src="image-loader.js"></script>-->
 
 </body>
 </html>

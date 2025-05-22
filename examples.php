@@ -39,28 +39,37 @@
 
 include_once('config.php');
 
-// Define table content as JSON
-$json = '[
-    {"description": "Open Data", "link": "http://localhost:9090/api/query?mode=event&start=2024-01-01"},
-    {"description": "Liste", "link": "event-list.php?mode=event&start=2024-01-01"},
-    {"description": "Details", "link": "event-tiles.php?mode=event&start=2024-01-01"},
-    {"description": "Stadt", "link": "event-img-grid.php?mode=event&city=*flens*"},
-    {"description": "Land", "link": "event-img-grid.php?mode=event&countries=DEU"},
-    {"description": "PLZ", "link": "event-img-grid.php?mode=event&postal_code=24939"},
-    {"description": "Spielstätte", "link": "event-img-grid.php?mode=event&venues=13"},
-    {"description": "Raum", "link": "event-list.php?mode=event&start=2024-01-01&spaces=64"},
-    {"description": "Radius", "link": "event-img-grid.php?mode=event&start=2024-01-01&lon=9.431297&lat=54.791603&radius=80"},
-    {"description": "Titel", "link": "event-img-grid.php?mode=event&title=*pap*"},
-    {"description": "Text", "link": "event-img-grid.php?mode=event&search=*Besteck*"},
-    {"description": "Datum", "link": "event-img-grid.php?mode=event&start=2024-01-01&date=2026-01-01"},
-    {"description": "Uhrzeit", "link": "event-img-grid.php?mode=event&time=10,14" },
-    {"description": "Art(en)", "link": "event-list.php?mode=event&start=2024-01-01&event_types=1"},
-    {"description": "Genre(s)", "link": "event-list.php?mode=event&start=2024-01-01&genre_types=2"},
-    {"description": "Sprache", "link": "event-list.php?mode=event&start=2024-01-01&lang=da"},
-    {"description": "Barrierefreiheit", "link": "event-tiles.php?mode=event&start=2024-01-01&accessibility_infos=5"},
-    {"description": "Besucherinfos", "link": "event-tiles.php?mode=event&start=2024-01-01&visitor_infos=4"},
-    {"description": "Event erstellen", "link": "create-event.php"}
-]';
+$data = [
+    ["description" => "Open Data (JSON)", "link" => $apiBaseUrl . "/query?mode=event&start=2024-01-01"],
+    ["description" => "Liste", "link" => "event-list.php?mode=event&start=2024-01-01"],
+    ["description" => "Details", "link" => "event-tiles.php?mode=event&start=2024-01-01"],
+    ["description" => "Stadt", "link" => "event-img-grid.php?mode=event&city=*flens*"],
+    ["description" => "Land", "link" => "event-img-grid.php?mode=event&countries=DEU"],
+    ["description" => "PLZ", "link" => "event-img-grid.php?mode=event&postal_code=2493*"],
+    ["description" => "Spielstätte", "link" => "event-img-grid.php?mode=event&venues=13"],
+    ["description" => "Raum", "link" => "event-list.php?mode=event&start=2024-01-01&spaces=64"],
+    ["description" => "Radius", "link" => "event-img-grid.php?mode=event&start=2024-01-01&lon=9.431297&lat=54.791603&radius=80"],
+    ["description" => "Titel", "link" => "event-img-grid.php?mode=event&title=*pap*"],
+    ["description" => "Text", "link" => "event-img-grid.php?mode=event&search=*Besteck*"],
+    ["description" => "Datum", "link" => "event-img-grid.php?mode=event&start=2024-01-01&date=2026-01-01"],
+    ["description" => "Uhrzeit", "link" => "event-img-grid.php?mode=event&time=10,14"],
+    ["description" => "Art(en)", "link" => "event-list.php?mode=event&start=2024-01-01&event_types=1"],
+    ["description" => "Genre(s)", "link" => "event-list.php?mode=event&start=2024-01-01&genre_types=2"],
+    ["description" => "Sprache", "link" => "event-list.php?mode=event&start=2024-01-01&lang=da"],
+    ["description" => "Barrierefreiheit", "link" => "event-tiles.php?mode=event&start=2024-01-01&accessibility=5"],
+    ["description" => "Besucherinfos", "link" => "event-tiles.php?mode=event&start=2024-01-01&visitor_infos=4"],
+    ["description" => "Venue Map (JSON)", "link" => $apiBaseUrl . "/query?mode=venue-map&start=2024-01-01"],
+    ["description" => "Karte Leaflet", "link" => "map-leaflet.html"],
+    ["description" => "Karte MapLibre", "link" => "map-maplibre.html"],
+    ["description" => "Image", "link" => $apiBaseUrl . "/image/get?id=52&mode=cover&width=400&ratio=3by2&focusx=0.5&focusy=0.5&type=webp&quality=90"],
+
+    ["description" => "Login", "link" => "login.php"],
+    ["description" => "Bild hochladen", "link" => "upload-image.php"],
+    ["description" => "Event erstellen", "link" => "create-event.php"],
+];
+
+$json = json_encode($data);
+
 
 // Decode JSON into array
 $data = json_decode($json, true);
@@ -79,8 +88,14 @@ if (is_array($data)) {
         echo "</tr>";
     }
     echo "</tbody></table>";
-} else {
+}
+else {
     echo "<p>Fehler beim Verarbeiten der JSON-Daten.</p>";
+}
+
+echo '<h1>Cookies</h1>';
+foreach ($_COOKIE as $name => $value) {
+    echo htmlspecialchars($name) . ': ' . htmlspecialchars($value) . '<br>';
 }
 ?>
 

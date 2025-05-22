@@ -1,20 +1,25 @@
 <?php
 include_once("config.php");
 
-// Build query string from current page's URL parameters
-$queryString = http_build_query($_GET);
+$post = $_SERVER['REQUEST_METHOD'] === 'POST';
 
-// Full API URL with parameters
-$apiUrl = $apiBaseUrl . '/query?' . $queryString;
+if ($post) {
+    $apiUrl = $apiBaseUrl . '/query?mode=event'; // Don't append query string to URL
+    $postData = http_build_query($_POST); // or manually build your key-value pairs
+    $ch = curl_init($apiUrl);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($ch, CURLOPT_POST, true); // This makes it a POST request
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $postData); // Send POST data
+}
+else {
+    $queryString = http_build_query($_GET);
+    $apiUrl = $apiBaseUrl . '/query?mode=event&' . $queryString;
+    $ch = curl_init($apiUrl);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+}
 
-
-$ch = curl_init($apiUrl);
-
-// Return response instead of outputting
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-// Follow redirects if needed
-curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
 // Execute request
 $response = curl_exec($ch);

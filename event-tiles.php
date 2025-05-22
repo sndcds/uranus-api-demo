@@ -91,20 +91,34 @@ echo "<p class='meta'>Abfragezeit: " . htmlspecialchars($data['time']) . "</p>";
 
 echo "<div class='event-grid'>";
 foreach ($data['events'] as $event) {
-    echo "<div class='event-tile'>";
-    echo "<h2>" . htmlspecialchars($event['event_title']) . "</h2>";
+    if (!empty($event['has_main_image'])) {
+        $imageId = htmlspecialchars((string)($event['image_id'] ?? ''));
+        $imageFocusX = htmlspecialchars((string)($event['image_focus_x'] ?? '0.5'));
+        $imageFocusY = htmlspecialchars((string)($event['image_focus_y'] ?? '0.5'));
+        $imageParams = [
+            'id' => $imageId,
+            'mode' => 'cover',
+            'width' => 333,
+            'ratio' => '3by2',
+            'focusx' => $imageFocusX,
+            'focusy' => $imageFocusY,
+            'type' => 'webp',
+            'quality' => 90,
+        ];
+        $imageUrl = $apiBaseUrl . '/image/get?' . http_build_query($imageParams);
+    }
+    else {
+        $imageUrl = "https://grain.one/img/uranus.jpg";
+    }
+
+    echo "<div class='event-tile pluto-image-tile'>";
+    echo "<h2>" . htmlspecialchars($event['title']) . "</h2>";
     echo "<div class='meta'>" . htmlspecialchars($event['start_date']) . " – " .
          htmlspecialchars($event['start_time']) . "<br>" .
          htmlspecialchars($event['venue_name']) . " / " .
-         htmlspecialchars($event['venue_city']) . "</div>";
+         htmlspecialchars($event['venue_city'] ?? '-') . "</div>";
 
-    if (!empty($event['img_src_name'])) {
-        $img = htmlspecialchars($event['img_src_name']);
-        echo "<img src='https://api.uranus.oklabflensburg.de/uploads/$img' alt='Event Bild'>";
-    }
-    else {
-        echo "<img src='https://grain.one/img/uranus.jpg' alt='Event Bild'>";
-    }
+    echo '<div class="event-tile pluto-image-tile" style="background-image:url(' . $imageUrl . '); box-sizing: border-box; width: 100%; aspect-ratio: 3 / 2; background-size: cover;"> </div>';
 
     if (!empty($event['event_types']) && is_array($event['event_types'])) {
         $filtered = array_filter($event['event_types'], fn($t) => isset($t['name']) && $t['name'] !== null);
@@ -128,14 +142,19 @@ foreach ($data['events'] as $event) {
         }
     }
 
+    require_once('text-utils.php');
+    $short = "";
     if (!empty($event['teaser_text'])) {
-        echo "<p><em>" . nl2br(htmlspecialchars($event['teaser_text'])) . "</em></p>";
+        $short = $event['teaser_text'];
+    }
+    else {
+        $short = getFirstWords($event['description'], 30, ' ...');
     }
 
-    echo "<p>" . nl2br(htmlspecialchars($event['description_preview'])) . "</p>";
+    echo "<p>" . nl2br(htmlspecialchars($short)) . "</p>";
 
     if (!empty($event['description'])) {
-        echo "<details><summary>Vollständige Beschreibung</summary>";
+        echo "<details><summary>Beschreibung</summary>";
         echo "<p>" . nl2br(htmlspecialchars($event['description'])) . "</p>";
         echo "</details>";
     }

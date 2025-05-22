@@ -1,25 +1,21 @@
 {
-  "organizer_id": 1,
-  "space_id": 64,
-  "title": "Jessica Ekomane",
-  "description": "essica Ekomane ist eine in Frankreich geborene und in Berlin lebende elektronische Musikerin und Klangkünstlerin. Ihre Praxis entfaltet sich rund um Live-Performances und Installationen. Ihre quadrophonischen Auftritte, die durch ihre physische Wirkung gekennzeichnet sind, zielen auf einen kathartischen Effekt durch das Zusammenspiel von Psychoakustik, die Wahrnehmung rhythmischer Strukturen und den Wechsel von Lärm und Melodie. Ihre sich ständig wandelnden und immersiven Klanglandschaften basieren auf Fragen wie dem Verhältnis zwischen individueller Wahrnehmung und kollektiver Dynamik oder der Untersuchung von Hörgewohnheiten und deren gesellschaftlichen Wurzeln.\n\nJessica Ekomane war eine der sechs Komponist*innen, die von Natascha Süder Happelman für deren Installation im Deutschen Pavillon der Biennale von Venedig 2019 ausgewählt wurden. Sie war Teil des Künstlerkatalogs der SHAPE Platform für das Jahr 2019. Im September 2019 erschien ihr erstes Album Multivocal über Important Records. Ihre Arbeiten wurden weltweit in verschiedenen Institutionen präsentiert, darunter das CTM Festival (Berlin), Ars Electronica (Linz), Dommune (Tokio) und das Bemis Center for Contemporary Arts (Omaha).",
+  "organizer_id": 33,
+  "space_id": 81,
+  "title": "Herbert",
+  "subtitle": "Mark Christoph Klee erforscht die Biographie seines schwulen Urgroßonkels, der als 175er während der NS-Diktatur inhaftiert wurde",
+  "description": "In “Herbert” untersucht Mark Christoph Klee die Biografie seines schwulen Urgroßonkels (1924 — 2012), der als 175er während der NS-Diktatur in Haft war. Mit historischen Fakten über die homophobe Geschichte Deutschlands, queerer Musik aus den 50ern und 60ern sowie Archivmaterial aus seinem Familienbestand zieht er Parallelen zwischen seinem Leben als homosexueller Mann heute und dem von Herbert damals. Die intimen Szenen aus Text und Bewegung sprechen von Diskriminierungserfahrungen, erlauben Raum für Wut, Trauer aber auch für queere Lebensfreude. “Herbert” macht auf emotionale Weise greifbar, was Demokratie und Diversität bedeuten, wie jung und fragil Rechte für queere Menschen sind und wie sich Rechtsextremismus heute und damals ähneln.",
+  "participation_info": null,
+  "meeting_point": null,
+  "event_types": [4],
+  "genre_types": [],
   "event_dates": [
     {
-      "start": "2024-11-15T20:00:00Z",
-      "accessibility_flags": [2, 3, 16, 18],
-      "visitor_info_flags": [2, 4, 6, 12, 14],
-      "space_id": 63,
-      "entry_time": "18:00:00"
-    },
-    {
-      "start": "2024-11-16T19:00:00Z",
-      "end": "2025-06-08T21:00:00Z",
-      "accessibility_flags": [2, 3, 16],
-      "visitor_info_flags": [2, 4, 6, 12, 14],
-      "space_id": 64
+      "start": "2025-05-24T20:00:00Z",
+      "accessibility_flags": [],
+      "visitor_info_flags": [2, 3, 4, 7],
+      "space_id": null,
+      "entry_time": "19:30:00"
     }
-  ],
-  "event_types": [1],
-  "genre_types": [1]
+  ]
 }
 

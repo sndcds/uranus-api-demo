@@ -82,7 +82,7 @@ echo "<p class='meta'>Abfragezeit: " . htmlspecialchars($data['time']) . "</p>";
 // Display each event
 foreach ($data['events'] as $event) {
     echo "<div class='event'>";
-    echo "<h2>" . htmlspecialchars($event['event_title']) . "</h2>";
+    echo "<h2>" . htmlspecialchars($event['title']) . "</h2>";
 
     echo "<p class='meta'>" . htmlspecialchars($event['start_date']) .
          " / " . htmlspecialchars($event['start_time']) . " / ";
@@ -93,7 +93,6 @@ foreach ($data['events'] as $event) {
         echo "<p><em>" . nl2br(htmlspecialchars($event['teaser_text'])) . "</em></p>";
     }
 
-    echo "<p>" . nl2br(htmlspecialchars($event['description_preview'])) . "</p>";
 
     if (!empty($event['description'])) {
         echo "<details><summary>Vollständige Beschreibung</summary>";
