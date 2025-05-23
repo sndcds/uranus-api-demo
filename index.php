@@ -1,39 +1,9 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <title>Linkliste</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            background-color: white;
-        }
-        th, td {
-            padding: 10px;
-            border: 1px solid #ccc;
-        }
-        th {
-            background-color: #eee;
-            text-align: left;
-        }
-        a {
-            color: #0077cc;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
+<?php
+include("html-page-head.php");
+?>
 
-<h1>Beispiele</h1>
+<body>
+<h1>Uranus/Pluto</h1>
 
 <?php
 
@@ -43,6 +13,7 @@ $data = [
     ["description" => "Open Data (JSON)", "link" => $apiBaseUrl . "/query?mode=event&start=2024-01-01"],
     ["description" => "Liste", "link" => "event-list.php?mode=event&start=2024-01-01"],
     ["description" => "Details", "link" => "event-tiles.php?mode=event&start=2024-01-01"],
+    ["description" => "Vergangene", "link" => "event-img-grid.php?mode=event&start=2022-01-01"],
     ["description" => "Stadt", "link" => "event-img-grid.php?mode=event&city=*flens*"],
     ["description" => "Land", "link" => "event-img-grid.php?mode=event&countries=DEU"],
     ["description" => "PLZ", "link" => "event-img-grid.php?mode=event&postal_code=2493*"],
@@ -84,7 +55,7 @@ if (is_array($data)) {
         $link = htmlspecialchars($entry['link']);
         echo "<tr>";
         echo "<td>$desc</td>";
-        echo "<td><a href=\"$link\" target=\"_blank\">$link</a></td>";
+        echo "<td><a href=\"$link\">$link</a></td>";
         echo "</tr>";
     }
     echo "</tbody></table>";

@@ -4,11 +4,10 @@
     <meta charset="utf-8" />
     <title>Event Map</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fonts/inter.css">
 
-    <!-- Leaflet CSS -->
+    <!-- Leaflet CSS and JS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-
-    <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
     <style>
@@ -16,6 +15,7 @@
             height: 100%;
             margin: 0;
             padding: 0;
+            font-family: 'Inter';
         }
 
         #map {

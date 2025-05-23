@@ -74,7 +74,7 @@
 
 <?php
 
-include("events-main.php");
+include("events-fetch.php");
 
 echo "<h1>Gefundene Events: " . htmlspecialchars($data['total']) . "</h1>";
 echo "<p class='meta'>Abfragezeit: " . htmlspecialchars($data['time']) . "</p>";

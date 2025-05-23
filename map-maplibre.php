@@ -5,10 +5,10 @@
     <title>Event Map with Styled Popups</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- MapLibre GL CSS -->
-    <link href="https://unpkg.com/maplibre-gl@3.3.1/dist/maplibre-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="fonts/inter.css">
 
-    <!-- MapLibre GL JS -->
+    <!-- MapLibre GL CSS and JS -->
+    <link href="https://unpkg.com/maplibre-gl@3.3.1/dist/maplibre-gl.css" rel="stylesheet" />
     <script src="https://unpkg.com/maplibre-gl@3.3.1/dist/maplibre-gl.js"></script>
 
     <style>
@@ -16,6 +16,7 @@
             margin: 0;
             padding: 0;
             height: 100%;
+            font-family: 'Inter';
         }
 
         #map {

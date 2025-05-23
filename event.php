@@ -1,5 +1,7 @@
 <?php
 include_once("config.php");
+include("html-page-head.php");
+
 
 $eventId = $_GET['id'] ?? null;
 if (!$eventId) {
@@ -30,30 +32,6 @@ if (!$event) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title><?= htmlspecialchars($event['title']) ?></title>
-  <style>
-    body { font-family: sans-serif; background: #f9f9f9; margin: 0; padding: 0; }
-    .container {
-      max-width: 800px; margin: 2rem auto; background: #fff; padding: 2rem;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1); border-radius: 8px;
-    }
-    img { max-width: 100%; border-radius: 8px; }
-    h1 { font-size: 3em; margin-top: 16px; margin-bottom:0;}
-    .section { margin-top: 2rem; line-height: 1.3em; }
-    .tags span {
-      display: inline-block; background: #eee; border-radius: 20px;
-      padding: 0.3rem 0.6rem; margin: 0.2rem; font-size: 0.9rem;
-    }
-    .genre-tags span { background-color: #e0f0ff; color: #005080; }
-    .event-type-tags span { background-color: #ffe0f0; color: #800050; }
-
-    .meta { color: #666; font-size: 1.4rem; margin: 0.5rem 0;}
-  </style>
-</head>
 <body>
 <div class="container">
 
@@ -78,7 +56,7 @@ if (!$event) {
             $imageUrl = "https://grain.one/img/uranus.jpg";
         }
 
-        echo '<div class="event-tile pluto-image-tile" style="background-image:url(' . $imageUrl . '); width: 100%; aspect-ratio: 3 / 2; background-size: cover;"> </div>';
+        echo '<div style="background-image:url(' . $imageUrl . '); width: 100%; aspect-ratio: 3 / 2; background-size: cover;"> </div>';
 
         if ($event['title'] != null) {
             echo "<h1>" . htmlspecialchars($event['title']) . "</h1>";
